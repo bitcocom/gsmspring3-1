@@ -20,6 +20,7 @@ public class MemberListController extends HttpServlet {
 		MemberDAO dao=new MemberDAO();
 		List<MemberVO> list=dao.getList();
 		// 클라이언트에게 회원리스트를 응답해준다(HTML)
+		response.setContentType("text/html;charset=euc-kr");
 		PrintWriter out=response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
