@@ -9,5 +9,9 @@ create table member(
    unique key(id)
  );
  
- select * from member;
+insert into member(id,pass,name,age,phone,email)
+values('admin','admin','관리자',30,'010-0000-0000','admin@gsm.kr');
+
+ 
+select * from member;
  --화-수(실습)/목-금(실습)
