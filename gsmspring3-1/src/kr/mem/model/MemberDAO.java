@@ -2,6 +2,8 @@ package kr.mem.model;
 // JDBC->myBatis->JPA
 // mysql->jdbc->Driver class(jar)
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 public class MemberDAO {
    private Connection conn;
    private PreparedStatement ps;
@@ -20,16 +22,36 @@ public class MemberDAO {
 	}	
    }
    // 회원전체 리스트 가져오기
-   public void getList() {
+   public List<MemberVO> getList() {
 	   getConnect();
 	   String SQL="select * from member";
+	   List<MemberVO> list=new ArrayList<MemberVO>();
 	   // SQL문장전송객체생성
 	   try {
 		  ps=conn.prepareStatement(SQL);
-		  
+		  rs=ps.executeQuery();
+		  while(rs.next()) {
+			 int num=rs.getInt("num");
+			 String id=rs.getString("id");
+			 String pass=rs.getString("pass");
+			 String name=rs.getString("name");
+			 int age=rs.getInt("age");
+			 String email=rs.getString("email");
+			 String phone=rs.getString("phone");
+			 // 묶고(VO)->담고(ArrayList)
+			 MemberVO vo=new MemberVO();
+			 vo.setNum(num);
+			 vo.setId(id);
+			 vo.setPass(pass);
+			 vo.setName(name);
+			 vo.setAge(age);
+			 vo.setEmail(email);
+			 vo.setEmail(phone);
+			 list.add(vo);
+		  }
 	    } catch (Exception e) {
    		 e.printStackTrace();
-	   }   
-	   
+	   } 
+	   return list;
    }
 }
