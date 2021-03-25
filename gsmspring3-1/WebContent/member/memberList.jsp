@@ -15,6 +15,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+     function register() {
+	   location.href="member/memberRegister.html";	
+	 }  
+  </script>
 </head>
 <body>
 <table class="table table-bordered table-hover">
@@ -38,6 +43,11 @@
      <td><%=vo.getEmail()%></td>
   </tr>
   <% } %>
+  <tr>
+    <td colspan="7" align="right">
+       <input type="button" value="회원가입"  onclick="register()" class="btn btn-primary"/>
+    </td>
+  </tr>
 </table>
 </body>
 </html>
