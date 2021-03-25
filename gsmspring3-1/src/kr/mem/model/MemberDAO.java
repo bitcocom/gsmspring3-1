@@ -12,7 +12,7 @@ public class MemberDAO {
    public void getConnect() {
 	   String URL="jdbc:mysql://localhost:3306/mysql"; //데이터베이스접속 URL
 	   String user="root";
-	   String password="12345";
+	   String password="admin12345";
        // Driver class를 메모리에 로딩(동적로딩)
 	   try {
 		  Class.forName("com.mysql.jdbc.Driver");
@@ -46,12 +46,13 @@ public class MemberDAO {
 			 vo.setName(name);
 			 vo.setAge(age);
 			 vo.setEmail(email);
-			 vo.setEmail(phone);
+			 vo.setPhone(phone);
 			 list.add(vo);
 		  }
 	    } catch (Exception e) {
    		 e.printStackTrace();
 	   } 
+	   System.out.println(list.toString());
 	   return list;
    }
 }
