@@ -12,7 +12,7 @@ public class MemberDAO {
    public void getConnect() {
 	   String URL="jdbc:mysql://localhost:3306/mysql"; //데이터베이스접속 URL
 	   String user="root";
-	   String password="admin12345";
+	   String password="12345";
        // Driver class를 메모리에 로딩(동적로딩)
 	   try {
 		  Class.forName("com.mysql.jdbc.Driver");
@@ -55,4 +55,32 @@ public class MemberDAO {
 	   System.out.println(list.toString());
 	   return list;
    }
+   //회원가입기능
+   public int memberInsert(MemberVO vo) {
+	  getConnect(); //                                                    ?(파라메터) 
+	  String SQL="insert into member(id,pass,name,age,phone,email) values(?,?,?,?,?,?)";
+	  int cnt=0;
+	  try {
+		  ps=conn.prepareStatement(SQL);
+		  ps.setString(1, vo.getId());
+		  ps.setString(2, vo.getPass());
+		  ps.setString(3, vo.getName());
+		  ps.setInt(4, vo.getAge());
+		  ps.setString(5, vo.getPhone());
+		  ps.setString(6, vo.getEmail());
+		  cnt=ps.executeUpdate(); //실행		  
+		} catch (Exception e) {
+		e.printStackTrace();
+	  }
+	  return cnt;
+   }
 }
+
+
+
+
+
+
+
+
+
