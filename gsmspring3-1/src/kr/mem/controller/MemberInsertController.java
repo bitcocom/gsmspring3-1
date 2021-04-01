@@ -13,6 +13,9 @@ import kr.mem.model.MemberVO;
 public class MemberInsertController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			                                 throws ServletException, IOException {
+		// 0. 한글인코딩
+		request.setCharacterEncoding("utf-8");
+		
 		// 1. 클라이언트에서 넘어온 파라메터를 수집(VO)
 		String id=request.getParameter("id");
 		String pass=request.getParameter("pass");

@@ -26,6 +26,6 @@ public class MemberListController extends HttpServlet {
 		// forward 기법
 		RequestDispatcher rd=request.getRequestDispatcher("member/memberList.jsp");
 		rd.forward(request, response);
-		
+		// 21-03-25일 수업 여기까지~~
 	}
 }

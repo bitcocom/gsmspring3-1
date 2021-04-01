@@ -19,6 +19,9 @@
      function register() {
 	   location.href="member/memberRegister.html";	
 	 }  
+     function delFn(num){
+    	 location.href="/m1/memberDelete.do?num="+num;
+     }
   </script>
 </head>
 <body>
@@ -31,6 +34,7 @@
      <td>나이</td>
      <td>전화번호</td>
      <td>이메일</td>
+     <td>삭제</td>
   </tr>
   <% for( MemberVO vo  : list){ %>
   <tr>
@@ -41,6 +45,7 @@
      <td><%=vo.getAge() %></td>
      <td><%=vo.getPhone()%></td>
      <td><%=vo.getEmail()%></td>
+     <td><input type="button" value="삭제"  class="btn btn-warning"  onclick="delFn(<%=vo.getNum()%>)"></td>
   </tr>
   <% } %>
   <tr>
