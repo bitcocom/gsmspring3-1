@@ -87,8 +87,38 @@ public class MemberDAO {
 		  e.printStackTrace();
 	   }
 	   return cnt;
+   }   
+   public MemberVO memberContent(int num) {
+	   getConnect();
+	   String SQL="select * from member where num=?";
+	   MemberVO vo=null;
+	   try {
+		 ps=conn.prepareStatement(SQL);
+		 ps.setInt(1, num);
+		 rs=ps.executeQuery();
+		 if(rs.next()) {
+			 num=rs.getInt("num");
+			 String id=rs.getString("id");
+			 String pass=rs.getString("pass");
+			 String name=rs.getString("name");
+			 int age=rs.getInt("age");
+			 String email=rs.getString("email");
+			 String phone=rs.getString("phone");
+			 // 묶고(VO)->담고(ArrayList)
+			 vo=new MemberVO();
+			 vo.setNum(num);
+			 vo.setId(id);
+			 vo.setPass(pass);
+			 vo.setName(name);
+			 vo.setAge(age);
+			 vo.setEmail(email);
+			 vo.setPhone(phone);
+		 }
+	   } catch (Exception e) {
+		 e.printStackTrace();
+	  }
+	   return vo;
    }
-   
 }
 
 
