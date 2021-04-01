@@ -119,6 +119,22 @@ public class MemberDAO {
 	  }
 	   return vo;
    }
+   public int memberUpdate(MemberVO vo) {
+	   getConnect();
+	   String SQL="update member set age=?, phone=?, email=? where num=?";
+	   int cnt=0;
+	   try {
+		 ps=conn.prepareStatement(SQL);
+		 ps.setInt(1, vo.getAge());
+		 ps.setString(2, vo.getPhone());
+		 ps.setString(3, vo.getEmail());
+		 ps.setInt(4, vo.getNum());
+		 cnt=ps.executeUpdate();		 
+	   } catch (Exception e) {
+		 e.printStackTrace();
+	   }
+	   return cnt;
+   }
 }
 
 
