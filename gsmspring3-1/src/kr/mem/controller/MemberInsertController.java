@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.mem.model.MemberDAO;
 import kr.mem.model.MemberVO;
-@WebServlet("/memberInsert.do")
-public class MemberInsertController extends HttpServlet {
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+ 
+public class MemberInsertController implements Controller{
+	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			                                 throws ServletException, IOException {
 		// 0. 한글인코딩
 		request.setCharacterEncoding("utf-8");
@@ -35,12 +35,14 @@ public class MemberInsertController extends HttpServlet {
         // 2. Model과 연동하는 작업
         MemberDAO dao=new MemberDAO();
         int cnt=dao.memberInsert(vo);
+        String view=null;
         if(cnt>0) {
         	//성공->다시 리스트페이지로 경로를 변경해주면된다.
-        	response.sendRedirect("/m1/memberList.do");
+        	view="redirect:/m12/memberList.do";
         }else {
         	throw new ServletException("error");
         }
+        return view;
 	}
 
 }

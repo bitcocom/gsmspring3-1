@@ -1,5 +1,4 @@
 package kr.mem.controller;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.mem.model.MemberDAO;
 import kr.mem.model.MemberVO;
-@WebServlet("/memberUpdate.do")
-public class MemberUpdateController extends HttpServlet {
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+
+public class MemberUpdateController implements Controller{
+	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			                throws ServletException, IOException {
-		// 파라메터수집(VO)
-		// 0. 한글인코딩
+				// 파라메터수집(VO)
+				// 0. 한글인코딩
 				request.setCharacterEncoding("utf-8");				
 				// 1. 클라이언트에서 넘어온 파라메터를 수집(VO)
 				int num=Integer.parseInt(request.getParameter("num"));
@@ -30,10 +29,13 @@ public class MemberUpdateController extends HttpServlet {
 		        
 		        MemberDAO dao=new MemberDAO();
 		        int cnt=dao.memberUpdate(vo);
+		        
+		        String view=null;
 		        if(cnt>0) {
-		        	response.sendRedirect("/m1/memberList.do");
+		        	view="redirect:/m12/memberList.do";
 		        }else {
 		        	throw new ServletException("error");
-		        }		        
+		        }			        
+		        return view;
 	}
 }

@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.mem.model.MemberDAO;
 import kr.mem.model.MemberVO;
-@WebServlet("/memberList.do")
-public class MemberListController extends HttpServlet {	
-	protected void service(HttpServletRequest request, HttpServletResponse response) 
+public class MemberListController implements Controller{	// Servlet -> POJO(Plain Old Java Object)
+	public String requestHandler(HttpServletRequest request, HttpServletResponse response) 
 			                                    throws ServletException, IOException {
 		// 회원전체 리스트 가져오기(Model)
 		MemberDAO dao=new MemberDAO();
@@ -23,9 +22,8 @@ public class MemberListController extends HttpServlet {
 		// 클라이언트에게 회원리스트를 응답해준다(HTML) : memberList.jsp
 		// 객체바인딩 기법
 		request.setAttribute("list", list);		
-		// forward 기법
-		RequestDispatcher rd=request.getRequestDispatcher("member/memberList.jsp");
-		rd.forward(request, response);
-		// 21-03-25일 수업 여기까지~~
+		// 다음페이지경로 리턴
+		return "member/memberList.jsp";
+		
 	}
 }
